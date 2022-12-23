@@ -1,34 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Website Skhole 2022 - Jumantara
+
+## Penjelasan Struktur
+Di sini ada penjelasan beberapa folder beserta fungsinya:
+### Components
+Folder yang dipake buat nyimpen komponen-komponen yang udah distyling dan biasanya dipake berulang, e.g. card, button, pagination, dsb
+
+### Hooks
+Folder yang dipake buat nyimpen keperluan autentikasi/login 
+**_Boleh diabaikan_**
+
+### Layout
+Folder yang dipake buat nyimpen komponen layouting, e.g. navbar, dsb
+
+### Pages
+Folder yang dipake buat nyimpen file typescript utama yang ditampilin di setiap halaman. Dibagi ke:
+| No | Pages          | Struktur                   |
+|----|----------------|----------------------------|
+| 1  | Home Page      | index.tsx                  |
+| 2  | Search Page    | .\search\index.tsx         |
+| 3  | Rumah Belajar  | .\rumah-belajar\index.tsx  |
+| 4  | Rumah Membaca  | .\rumah-membaca\index.tsx  |
+| 5  | Bingkai Skhole | .\bingkai-skhole\index.tsx |
+| 6  | Tentang Kami   | .\tentang-kami\index.tsx   |
+| 7  | Coming Soon    | .\coming-soon\index.tsx    |
+
+### Public
+Folder yang dipake buat nyimpen asset-asset public, e.g. image, icon
+
+### Styles
+Folder yang dipake buat nyimpen asset css buat styling
+**_Boleh diabaikan_**
+
+### Themes
+Folder yang dipake buat nyimpen keperluan themes, e.g. font, dsb
+**_Boleh diabaikan_**
 
 ## Getting Started
+### Requirements
+Ini requirement yang harus di-install ya
+* NodeJS 15.4.0 or newer
+    
+    Saran: install-nya pake [nvm](https://github.com/nvm-sh/nvm/archive/refs/tags/v0.39.2.zip) aja
+    
+    Kalau udah ke-install, bisa install node pake ini
+    ```
+    nvm install latest
+    
+    nvm use latest
+    ```
+* NPM
 
-First, run the development server:
+### Instalasi
+1. Clone repo
+    ```
+    git clone "https://github.com/it-skhole/FE-Skhole-2022"
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+2. Change directory ke FE-Skhole-2022
+    ```
+    cd "FE-Skhole-2022"
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Install NPM packages
+    ```
+    npm install
+    ```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Cara Menjalankan Program
+1. Lakukan compile terhadap file NextJS
+    ```
+    npm run dev
+    ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. Buka link berikut
+    [http://localhost:3000](http://localhost:3000)
+    
