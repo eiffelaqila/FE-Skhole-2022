@@ -1,3 +1,4 @@
+import React from 'react'
 import {
     Box, Center, Image, Container, Stack, Flex, Heading, Text, Input, InputRightAddon, InputGroup, IconButton, layout
 } from '@chakra-ui/react'

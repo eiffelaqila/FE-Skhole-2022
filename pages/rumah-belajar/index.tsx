@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from 'next/head'
 import Header from '../../layout/header'
 import { Box, Center, Heading, Text, VStack } from '@chakra-ui/react'
