@@ -1,3 +1,4 @@
+import React from 'react'
 import { Box, Center, Heading, Image } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react';

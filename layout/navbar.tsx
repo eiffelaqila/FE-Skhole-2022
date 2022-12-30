@@ -94,8 +94,8 @@ export default function Navbar() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <Box bg='white' boxShadow='0px 16px 32px rgba(0, 0, 0, 0.15)'>
-            <Flex h={16} alignItems={'center'} justifyContent={'space-between'} px={4}>
+        <Box position='sticky' top='0' bg='white' boxShadow='0px 16px 32px rgba(0, 0, 0, 0.15)'>
+            <Flex h={16} alignItems={'center'} justifyContent={'space-between'} px={100}>
                 <Center>
                     <NextLink href={'/'} passHref>
                         <Image

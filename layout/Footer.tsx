@@ -1,11 +1,8 @@
-import { FormControl } from "@chakra-ui/react";
 import React from 'react'
-import{Box, Center}from '@chakra-ui/react'
-
-FormControl
+import {Box, Center}from '@chakra-ui/react'
 
 export default function Footer () {
-    return(
+    return (
         <div>
             <Box bgColor="#050038" minHeight='7vh' padding={4}>
                 <Center color='white'>
