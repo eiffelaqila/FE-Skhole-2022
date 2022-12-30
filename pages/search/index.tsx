@@ -64,7 +64,7 @@ export default function Search() {
                     </Flex>
                     <Container 
                         position="absolute"
-                        top="70%"
+                        top="60%"
                         right="50%px" 
                         bg="white" 
                         p="3" 
