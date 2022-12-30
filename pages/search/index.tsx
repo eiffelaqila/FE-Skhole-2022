@@ -67,8 +67,9 @@ export default function Search() {
                         top="60%"
                         right="50%px" 
                         bg="white" 
-                        p="3" 
-                        borderRadius="xl">
+                        p="0"
+                        borderRadius="xl"
+                        >
                         <Stack direction="row" gap="2">
                             <InputGroup>
                                 <Input
