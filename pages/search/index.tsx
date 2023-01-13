@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Footer from '../../layout/Footer'
 import { SearchIcon } from '@chakra-ui/icons';
@@ -19,17 +19,42 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import ISearchData from '../../models/ISearchData';
+import { postAPI } from '../../lib/api';
 
 export default function Search() {
     const router = useRouter();
     const [search, setSearch] = useState('');
     
+    const [searchData, setSearchData] = useState<ISearchData | null>(null);
+
+    const updateData = async () => {
+        const { data } = await postAPI<ISearchData>(
+            `/rumah-belajar/search`,
+            {
+                query: router.query['query']
+            }
+        )
+        console.log('query='+router.query['query'])
+        console.log('data=')
+        console.log(data)
+        
+        setSearchData(data);
+    }
+
     const handleSearch = () => {
         // Not Empty
         if (search !== '') {
             router.push({ pathname: '/search', query: { query: search } });
         }
     }
+
+    useEffect(() => {
+        if (router.query['query'] !== '' && router.query['query'] !== undefined) {
+            console.log(router.query['query']);
+            updateData();
+        }
+    }, [router.query['query']])
     
     return (
         <>
@@ -88,14 +113,27 @@ export default function Search() {
             </Box>
             <Box
             position='relative' 
-            overflow='hidden'
             h = '60vh'
             css={`
                     background: url(static/images/noise-1280-832.svg), #500D7D;
                     background-size: cover
                 `}
             >
+                <Heading>Mata Pelajaran</Heading>
+                {searchData?.mata_pelajaran.map((item) => (
+                    <Text color="white" key={item.id_matpel}>
+                        {item.nama_matpel} <br/>
+                        {item.kelas}
+                    </Text>
+                ))}
 
+                <Heading>Materi</Heading>
+                {searchData?.materi.map((item) => (
+                    <Text color="white" key={item.id_materi}>
+                        {item.nama_materi} <br/>
+                        {item.nama_matpel}
+                    </Text>
+                ))}
             </Box>
             <Footer/>
         </>
