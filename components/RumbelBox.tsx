@@ -10,24 +10,17 @@ import {
 import { useEffect, useState } from 'react';
 import { getAPI } from '../lib/api'
 import RumbelCard from '../components/RumbelCard'
-
-interface mata_pelajaran {
-    id_matpel: string,
-    nama_matpel: string,
-    kelas: string,
-    icon_src: string
-}
+import IMataPelajaran from '../models/IMataPelajaran';
 
 function RumbelBox() {
     const [kelas, setKelas] = useState('7');
-    const [matpel, setMatpel] =  useState<mata_pelajaran[] | null>(null);
+    const [matpel, setMatpel] =  useState<IMataPelajaran[] | null>(null);
 
     const updateData = async () => {
-        const { data } = await getAPI<mata_pelajaran[]>(
+        const { data } = await getAPI<IMataPelajaran[]>(
             `/rumah-belajar/getmatpel/${kelas}`
         )
         
-        console.log(kelas);
         setMatpel(data);
     };
 
@@ -36,8 +29,6 @@ function RumbelBox() {
     };
 
     useEffect(() => {
-        console.log("Ini")
-        console.log(kelas);
         updateData();
     }, [kelas])
 
@@ -103,7 +94,7 @@ function RumbelBox() {
                             onChange={handleKelasChange}
                         >
                             { classSelectionItems.map((item) => (
-                                <option value={item.value}>{item.text}</option>
+                                <option key={item.value} value={item.value}>{item.text}</option>
                             )) }
                         </Select>
                     </Stack>
@@ -121,7 +112,7 @@ function RumbelBox() {
                     
                 <Flex flexWrap={'wrap'} gap= {{base: '5', md: '10'}} justifyContent={'center'}>
                     { matpel?.map((item) => (
-                        <RumbelCard id_matpel={item.id_matpel} nama_matpel={item.nama_matpel} kelas={item.kelas} icon_src={item.icon_src} />
+                        <RumbelCard key={item.id_matpel} id_matpel={item.id_matpel} nama_matpel={item.nama_matpel} kelas={item.kelas} icon_src={item.icon_src} />
                     ))}
                 </Flex>
             </Box>

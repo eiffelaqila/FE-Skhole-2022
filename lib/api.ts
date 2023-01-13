@@ -28,7 +28,7 @@ export async function postAPI<T>(
 ) {
     const parameter = params ?? undefined;
 
-    const { data }: { data: IResponse<T> } = await axios.postForm(
+    const { data }: { data: IResponse<T> } = await axios.post(
         `${process.env.BACKEND_SERVER}${path}`,
         payload,
         {
