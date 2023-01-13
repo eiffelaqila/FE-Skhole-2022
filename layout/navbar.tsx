@@ -94,7 +94,7 @@ export default function Navbar() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <Box position='sticky' top='0' bg='white' boxShadow='0px 16px 32px rgba(0, 0, 0, 0.15)'>
+        <Box position='sticky' top='0' bg='white' boxShadow='0px 16px 32px rgba(0, 0, 0, 0.15)' zIndex='99999'>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'} px={100}>
                 <Center>
                     <NextLink href={'/'} passHref>

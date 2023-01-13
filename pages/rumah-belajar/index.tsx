@@ -1,7 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
-import Header from '../../layout/header'
 import { Box, Center, Heading, Text, VStack } from '@chakra-ui/react'
+import RumbelBox from '../../components/RumbelBox'
+import Footer from '../../layout/Footer'
 
 export default function RumahBelajar() {
     return (
@@ -10,38 +11,39 @@ export default function RumahBelajar() {
                 <title>Rumah Belajar - Skhole 2022</title>
             </Head>
             
-            <div>
-                <Center
-                    w='100vw'
-                    maxW='100%'
-                    h='40vh'
-                    css={`
-                        background: url(static/images/noise-1280-832.svg), #471CA8;
-                        background-size: cover;
-                    `}
-                >
-                    <VStack>
-                        <Heading fontSize='128px' color='white'>
-                            Rumah Belajar
-                        </Heading>
-                        <Text fontSize='3xl' color='#FEE56C' fontWeight='bold'>
-                            “Ilmu adalah kehidupan bagi pikiran”
-                        </Text>
-                    </VStack>
-                </Center>
-            </div>
-
-            <Box
-                minH='60vh'
+            <Center
                 w='100vw'
                 maxW='100%'
+                h='40vh'
                 css={`
-                        background: url(static/images/noise-1280-832.svg), linear-gradient(90deg, #200655, #050038);
-                        background-size: cover
-                    `}
+                    background: url(static/images/noise.png), #471CA8;
+                    background-repeat: repeat;
+                `}
             >
+                <VStack>
+                    <Heading fontSize={{base: '36px', sm:'52px', md: '64px', lg: '80px'}} color='white'>
+                        Rumah Belajar
+                    </Heading>
+                    <Text fontSize={{base: 'lg', sm:'xl', md: '2xl', lg: '3xl'}} color='#FEE56C' fontWeight='bold'>
+                        “Ilmu adalah kehidupan bagi pikiran”
+                    </Text>
+                </VStack>
+            </Center>
 
+            <Box 
+                position="relative" 
+                minHeight="100vh" 
+                bgColor="#373360" 
+                transform="auto"
+                css={`
+                    background: url(static/images/noise.png), #200655;
+                    background-repeat: repeat;
+                `}
+            >]
+                <RumbelBox/>
             </Box>
+            
+            <Footer/> 
         </>
     )
 }

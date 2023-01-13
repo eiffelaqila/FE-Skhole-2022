@@ -9,7 +9,7 @@ export default function Header () {
                 maxW='100%'
                 h='40vh'
                 css={`
-                    background: url(static/images/noise-1280-832.svg) 50%, #471CA8;
+                    background: url(static/images/noise-1280-832.svg), #471CA8;
                     background-size: cover
                 `}
             >

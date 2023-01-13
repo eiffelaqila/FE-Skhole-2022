@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme} >
       <Fonts />
       { router.pathname !== '/coming-soon' ? <Navbar /> : '' }
       <Component {...pageProps} />

@@ -14,12 +14,12 @@ import {
     InputGroup,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Jumbotron() {
     const router = useRouter();
     const [search, setSearch] = useState('');
-    
+
     const handleSearch = () => {
         // Not Empty
         if (search !== '') {
@@ -35,8 +35,11 @@ export default function Jumbotron() {
                 height='40vh' 
                 
                 borderBottomRadius={50} 
-                mx='auto' 
-                bg='linear-gradient(180deg, #050038 0%, #0E2FB2 100%)'
+                mx='auto'
+                css={`
+                    background: url(static/images/noise.png), linear-gradient(180deg, #050038 0%, #0E2FB2 100%);
+                    background-repeat: repeat;
+                `}
             >
 
                 {/* Text */}
@@ -45,8 +48,8 @@ export default function Jumbotron() {
                     direction="column" 
                     align="center"
                 >
-                    <Heading color="white">
-                        Hai, Skholeans!
+                    <Heading fontSize={{base: '36px', sm:'52px', md: '64px', lg: '80px'}} color="white">
+                        Hai, <span style={{color:"#FEE56C"}}>Skholeans!</span>
                     </Heading>
                     <Text color="white">
                         Mari berjelajah di dunia skholeverse
