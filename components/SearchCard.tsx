@@ -32,7 +32,7 @@ function SearchCard({
                 justifyContent={'flex-start'} 
                 flexDirection='column' 
                 height={{base: '60px', md: '100px'}} 
-                width={{base: '300px', md: '500px'}} 
+                width={{base: '400px', md: '600px'}} 
                 paddingTop={5}
                 bg="white"
                 rounded={10}

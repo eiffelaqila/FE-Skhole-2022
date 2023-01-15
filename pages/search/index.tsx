@@ -122,19 +122,20 @@ export default function Search() {
             >
                 <VStack>
                     <Flex 
-                        position="absolute"
-                        top="15%"
-                        right="49%" 
+                        position="relative"
+                        top="20%"
+                        right="11%" 
                         direction="column" 
                         align="center"
+                        paddingTop={5}
                     >
                         <Heading color="white">Hasil Pencarian</Heading>
 
                     </Flex>
                     <Flex 
-                        position="absolute"
+                        position="relative"
                         top="27%"
-                        right="33.8%" 
+                        right="0.15%" 
                         direction="column" 
                         align="center"
                         flexWrap={'wrap'} 
