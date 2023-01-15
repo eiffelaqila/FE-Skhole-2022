@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ISearchData from '../../models/ISearchData';
 import { postAPI } from '../../lib/api';
+import SearchCard from '../../components/SearchCard'
 
 export default function Search() {
     const router = useRouter();
@@ -30,7 +31,7 @@ export default function Search() {
 
     const updateData = async () => {
         const { data } = await postAPI<ISearchData>(
-            `/rumah-belajar/search`,
+            `/rumahbelajar/search`,
             {
                 query: router.query['query']
             }
@@ -113,27 +114,40 @@ export default function Search() {
             </Box>
             <Box
             position='relative' 
-            h = '60vh'
+            minH = '60vh'
             css={`
                     background: url(static/images/noise-1280-832.svg), #500D7D;
-                    background-size: cover
+                    background-size: cover;
                 `}
             >
-                <Heading>Mata Pelajaran</Heading>
-                {searchData?.mata_pelajaran.map((item) => (
-                    <Text color="white" key={item.id_matpel}>
-                        {item.nama_matpel} <br/>
-                        {item.kelas}
-                    </Text>
-                ))}
+                <VStack>
+                    <Flex 
+                        position="absolute"
+                        top="15%"
+                        right="49%" 
+                        direction="column" 
+                        align="center"
+                    >
+                        <Heading color="white">Hasil Pencarian</Heading>
 
-                <Heading>Materi</Heading>
-                {searchData?.materi.map((item) => (
-                    <Text color="white" key={item.id_materi}>
-                        {item.nama_materi} <br/>
-                        {item.nama_matpel}
-                    </Text>
-                ))}
+                    </Flex>
+                    <Flex 
+                        position="absolute"
+                        top="27%"
+                        right="33.8%" 
+                        direction="column" 
+                        align="center"
+                        flexWrap={'wrap'} 
+                        gap= {{base: '2', md: '5'}}
+                    >
+                    {searchData?.mata_pelajaran.map((item) => (
+                    <SearchCard key={item.id_matpel} id_matpel={item.id_matpel} nama_matpel={item.nama_matpel} kelas={item.kelas} />
+                    ))}
+                    </Flex>
+                    
+                </VStack>
+                
+
             </Box>
             <Footer/>
         </>
