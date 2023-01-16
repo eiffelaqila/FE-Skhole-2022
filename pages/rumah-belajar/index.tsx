@@ -39,7 +39,7 @@ export default function RumahBelajar() {
                     background: url(static/images/noise.png), #200655;
                     background-repeat: repeat;
                 `}
-            >]
+            >
                 <RumbelBox/>
             </Box>
             

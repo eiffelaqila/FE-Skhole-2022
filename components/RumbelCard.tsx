@@ -27,7 +27,7 @@ function RumbelCard({
 }) {
     return (
         <>
-            <a href={`/rumah-belajar/${id_matpel}`}>
+            <a href={`/rumah-membaca/${id_matpel}`}>
                 <Flex 
                 justifyContent={'center'} 
                 flexDirection='column' 
@@ -38,7 +38,7 @@ function RumbelCard({
                 rounded={10}
                 gap = {{base: 2, md: 5}}
                 >
-                    <Flex alignItems={'center'} justifyContent={'center'} paddingTop={2}>
+                    <Flex alignItems={'center'} justifyContent={'center'} paddingTop={2} paddingRight={1}>
                         <Image h={{base: '56px', md: '74px'}} src={`${icon_src}`}/>
                     </Flex>
                     <Flex flexDirection='column' gap={{base: 0, md: 2}} alignItems={{base: 'center', md: 'flex-start'}} paddingLeft={{base: 0, md: 2}}>
