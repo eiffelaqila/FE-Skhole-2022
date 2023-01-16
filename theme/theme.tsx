@@ -8,7 +8,6 @@ const theme = extendTheme({
   },
   fonts: {
     heading: `'Livvic', sans-serif`,
-    
     body: `'Inter', sans-serif`,
   },
   styles: {
