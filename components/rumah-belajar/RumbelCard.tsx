@@ -13,6 +13,7 @@ import {
     IconButton,
     InputGroup,
 } from '@chakra-ui/react'
+import Link from 'next/link';
 
 function RumbelCard({
     id_matpel,
@@ -27,7 +28,7 @@ function RumbelCard({
 }) {
     return (
         <>
-            <a href={`/rumah-belajar/${id_matpel}`}>
+            <Link href={`/rumah-belajar/${id_matpel}`}>
                 <Flex 
                 justifyContent={'center'} 
                 flexDirection='column' 
@@ -50,7 +51,7 @@ function RumbelCard({
                         </Text>
                     </Flex>
                 </Flex>
-            </a>
+            </Link>
         </>
     )
 }

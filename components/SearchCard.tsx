@@ -13,6 +13,7 @@ import {
     IconButton,
     InputGroup,
 } from '@chakra-ui/react'
+import Link from 'next/link';
 
 function SearchCard({
     id_matpel,
@@ -25,11 +26,10 @@ function SearchCard({
 }) {
     return (
         <>
-            <a href={`/rumahbelajar/${id_matpel}`}>
+            <Link href={`/rumah-belajar/${id_matpel}`}>
                 <Flex 
                 top="20%"
                 right="50%px" 
-                justifyContent={'flex-start'} 
                 flexDirection='column' 
                 height={{base: '60px', md: '100px'}} 
                 width={{base: '400px', md: '600px'}} 
@@ -47,7 +47,7 @@ function SearchCard({
                         </Text>
                     </Flex>
                 </Flex>
-            </a>
+            </Link>
         </>
     )
 
