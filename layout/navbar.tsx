@@ -1,4 +1,4 @@
-import { useRef, MouseEventHandler } from 'react'
+import { MouseEventHandler, useEffect, useState } from 'react'
 import { useRouter, NextRouter } from 'next/router'
 import NextLink from 'next/link'
 
@@ -6,31 +6,24 @@ import NextLink from 'next/link'
 import { 
     Box, 
     Button, 
-    ButtonProps,
     Center, 
     Collapse, 
     Flex, 
     HStack, 
-    Heading,
-    HeadingProps,
-    Icon,
     IconButton,
     Image,
     Link,
     LinkProps,
-    Show,
-    Slide,
-    Spacer,
     Stack,
     Text,
     useDisclosure
 } from '@chakra-ui/react'
 import { 
-    ChevronDownIcon, 
     CloseIcon, 
     HamburgerIcon,
     Search2Icon
 } from '@chakra-ui/icons'
+import useAuth from '../hooks/useAuth'
 
 type LinkDescription = { 
     label: string, 
@@ -73,7 +66,7 @@ function LinkText({ label, href, onClick }:
                 onClick={ onClick }
             >
                 <Text
-                    fontSize={{ base: 'sm', lg: 'md' }} 
+                    fontSize={{ base: 'sm', xl: 'md' }} 
                     align="center"
                     lineHeight='1.0'
                     fontWeight='700'
@@ -86,29 +79,40 @@ function LinkText({ label, href, onClick }:
 }
 
 export default function Navbar() {
-    let isLoggedIn = false
     let navLinks = primaryLinks
 
     const router = useRouter()
+    const { getUsername } = useAuth()
+    const [username, setUsername] = useState<string | undefined>(undefined)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    useEffect(() => {
+        const uname = getUsername()
+
+        if (!uname) {
+            setUsername(undefined)
+        } else {
+            setUsername(uname)
+        }
+    }, [getUsername()])
+
     return (
-        <Box position='sticky' top='0' bg='white' boxShadow='0px 16px 32px rgba(0, 0, 0, 0.15)' zIndex='99999'>
-            <Flex h={16} alignItems={'center'} justifyContent={'space-between'} px={100}>
+        <Box position='sticky' top='0' bg='white' boxShadow='0px 16px 32px rgba(0, 0, 0, 0.15)' zIndex='99'>
+            <Flex h={16} alignItems={'center'} justifyContent={'space-between'} px={{base: '40px', lg: '100px'}}>
                 <Center>
                     <NextLink href={'/'} passHref>
                         <Image
-                            src={'static/images/logo-skhole-jumantara.svg'}
+                            src={'/static/images/logo-skhole-jumantara.svg'}
                             alt={'Skhole Jumantara'}
                             h={10}
                         />
                     </NextLink>
                 </Center>
-                <HStack spacing={8} alignItems={'center'}>
+                <HStack spacing={{ base: '4', xl: '8' }}  alignItems={'center'}>
                     <HStack
-                    spacing={{ base: '1', lg: '4' }} 
-                    display={{ base: 'none', md: 'flex' }}>
+                    spacing={{ base: '1', xl: '4' }} 
+                    display={{ base: 'none', lg: 'flex' }}>
                     {navLinks.map((props) => (
                         <Center 
                             key={props.href}
@@ -126,7 +130,24 @@ export default function Navbar() {
                             />
                         </Center>
                     </NextLink>
-                    <Center display={{ md: 'none' }}>
+                    { username ? 
+                        <NextLink href={'/logout'} passHref>
+                            <Center>
+                                <Button bg='#FEE56C' color="#500D7D" rounded={20} fontSize={'sm'}>
+                                    { username.toUpperCase() }
+                                </Button>
+                            </Center>
+                        </NextLink>
+                    :
+                        <NextLink href={'/login'} passHref>
+                            <Center>
+                                <Button bg='#FEE56C' color="#500D7D" rounded={20} fontSize={'sm'}>
+                                    Log In
+                                </Button>
+                            </Center>
+                        </NextLink>
+                    }
+                    <Center display={{ lg: 'none' }}>
                         <IconButton
                             size={'md'}
                             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -140,7 +161,7 @@ export default function Navbar() {
 
             <Collapse in={isOpen} animateOpacity>
                 <Box 
-                    display={{ md: 'none' }} 
+                    display={{ lg: 'none' }} 
                     top={16} 
                     py={4}
                     w={'100%'}
@@ -149,14 +170,30 @@ export default function Navbar() {
                     borderBottomRadius={"3xl"}
                 >
                     <Stack as={'nav'} spacing={4}>
-                        {navLinks.map((props) => (
+                        { navLinks.map((props) => (
                             <Center 
                                 key={props.href}
-                                paddingLeft={2}
                             >
                                 <LinkText {...props} />
                             </Center>
                         ))}
+                        { username ? 
+                            <NextLink href={'/logout'} passHref>
+                                <Center>
+                                    <Button bg='#FEE56C' color="#500D7D" rounded={20} fontSize={'sm'}>
+                                        { username.toUpperCase() }
+                                    </Button>
+                                </Center>
+                            </NextLink>
+                        :
+                            <NextLink href={'/login'} passHref>
+                                <Center>
+                                    <Button bg='#FEE56C' color="#500D7D" rounded={20} fontSize={'sm'}>
+                                        Log In
+                                    </Button>
+                                </Center>
+                            </NextLink>
+                        }
                     </Stack>
                 </Box>
             </Collapse>

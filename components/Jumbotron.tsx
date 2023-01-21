@@ -1,32 +1,14 @@
-import { SearchIcon } from '@chakra-ui/icons';
 import {
     Box,
-    Container,
     Center,
     Heading,
     Image,
-    Stack,
     Text,
     Flex,
-    Input,
-    InputRightAddon,
-    IconButton,
-    InputGroup,
 } from '@chakra-ui/react'
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import SearchBar from './SearchBar';
 
 export default function Jumbotron() {
-    const router = useRouter();
-    const [search, setSearch] = useState('');
-
-    const handleSearch = () => {
-        // Not Empty
-        if (search !== '') {
-            router.push({ pathname: '/search', query: { query: search } });
-        }
-    }
-
     return (
         <>
             <Center
@@ -86,23 +68,7 @@ export default function Jumbotron() {
                     right="10%" 
                 />
             </Center>
-            <Center>
-                <Container position="absolute" bg="white" p="0" borderRadius="xl">
-                    <Stack direction="row" gap="2">
-                        <InputGroup>
-                            <Input
-                                value={search}
-                                onChange={e => setSearch(e.target.value)}
-                                placeholder="Mau belajar apa hari ini?"
-                                borderRadius="xl"
-                            />
-                            <InputRightAddon>
-                                <IconButton aria-label="Search" icon={<SearchIcon />} onClick={handleSearch}/>
-                            </InputRightAddon>
-                        </InputGroup>
-                    </Stack>
-                </Container>
-            </Center>
+            <SearchBar />
         </>
     )
 }

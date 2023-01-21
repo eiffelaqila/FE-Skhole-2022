@@ -5,7 +5,7 @@ import { type AppProps } from 'next/app';
 import theme from '../theme/theme'
 import Fonts from '../theme/fonts'
 
-import Navbar from '../layout/navbar'
+import Navbar from '../layout/Navbar'
 import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {

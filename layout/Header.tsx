@@ -1,27 +1,39 @@
-import React from 'react'
-import {Box, Center, Heading, Text, VStack, } from '@chakra-ui/react'
+import {
+    Center,
+    Heading,
+    Text,
+    VStack,
+} from '@chakra-ui/react'
 
-export default function Header () {
+export default function HeaderLayout({
+    title,
+    subtitle,
+    color
+}: {
+    title: string,
+    subtitle: string,
+    color?: string
+}) {
     return (
-        <div>
+        <>
             <Center
                 w='100vw'
                 maxW='100%'
                 h='40vh'
                 css={`
-                    background: url(static/images/noise-1280-832.svg), #471CA8;
-                    background-size: cover
+                    background: url(/static/images/noise.png), ${color ? color : '#471CA8'};
+                    background-repeat: repeat;
                 `}
             >
                 <VStack>
-                    <Heading size='4xl' color='white'>
-                        Rumah Belajar
+                    <Heading fontSize={{base: '36px', sm:'52px', md: '64px', lg: '80px'}} color='white'>
+                        {title}
                     </Heading>
-                    <Text size='2xl' color='#FEE56C' fontWeight='bold'>
-                        “Ilmu adalah kehidupan bagi pikiran”
+                    <Text fontSize={{base: 'lg', sm:'xl', md: '2xl', lg: '3xl'}} color='#FEE56C' fontWeight='bold'>
+                       {subtitle}
                     </Text>
                 </VStack>
             </Center>
-        </div>
+        </>
     )
 }
