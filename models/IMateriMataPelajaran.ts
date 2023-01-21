@@ -6,4 +6,7 @@ export default interface IMateriMataPelajaran {
     url_rangkuman: string;
     url_ujian: string;
     url_solusi: string;
+    nama_matpel: string;
+    kelas: string;
+    icon_src: string;
 }

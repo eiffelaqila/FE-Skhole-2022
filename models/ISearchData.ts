@@ -1,7 +1,7 @@
 import IMataPelajaran from "./IMataPelajaran";
-import IMateri from "./IMateri";
+import IMateriMataPelajaran from "./IMateriMataPelajaran";
 
 export default interface ISearchData {
     mata_pelajaran: IMataPelajaran[] | [];
-    materi: IMateri[] | [];
+    materi: IMateriMataPelajaran[] | [];
 }
