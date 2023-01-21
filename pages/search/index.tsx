@@ -22,10 +22,12 @@ import { useState } from 'react';
 import ISearchData from '../../models/ISearchData';
 import { postAPI } from '../../lib/api';
 import SearchCard from '../../components/SearchCard'
+import axios from 'axios';
 
 export default function Search() {
     const router = useRouter();
     const [search, setSearch] = useState('');
+    const [loading, setLoading] = useState(true);
     
     const [searchData, setSearchData] = useState<ISearchData | null>(null);
 
@@ -36,10 +38,8 @@ export default function Search() {
                 query: router.query['query']
             }
         )
-        console.log('query='+router.query['query'])
-        console.log('data=')
-        console.log(data)
         
+        setLoading(false);
         setSearchData(data);
     }
 
@@ -52,8 +52,19 @@ export default function Search() {
 
     useEffect(() => {
         if (router.query['query'] !== '' && router.query['query'] !== undefined) {
-            console.log(router.query['query']);
-            updateData();
+            try {
+                setLoading(true);
+                updateData();
+            } catch (error: any) {
+                if (axios.isAxiosError(error)) {
+                    if (error.response?.status === 500) {
+                        router.reload()
+                    }
+                }
+            }
+        } else {
+            setLoading(false);
+            
         }
     }, [router.query['query']])
     
@@ -67,8 +78,8 @@ export default function Search() {
                 overflow='hidden'
                 h = '40vh'
                 css={`
-                    background: url(static/images/noise-1280-832.svg), #471CA8;
-                    background-size: cover
+                    background: url(static/images/noise.png), #471CA8;
+                    background-repeat: repeat
                 `}
                 >
                     
@@ -116,39 +127,43 @@ export default function Search() {
             position='relative' 
             minH = '60vh'
             css={`
-                    background: url(static/images/noise-1280-832.svg), #500D7D;
-                    background-size: cover;
+                    background: url(static/images/noise.png), #500D7D;
+                    background-repeat: repeat;
                 `}
             >
-                <VStack>
-                    <Flex 
-                        position="relative"
-                        top="20%"
-                        right="11%" 
-                        direction="column" 
-                        align="center"
-                        paddingTop={5}
-                    >
-                        <Heading color="white">Hasil Pencarian</Heading>
+                {loading ? 
+                    <Center h="20vh">
+                        <Image src="static/images/loading.svg" />
+                    </Center>
+                :
+                    <VStack>
+                        <Flex 
+                            position="relative"
+                            top="20%"
+                            right="11%" 
+                            direction="column" 
+                            align="center"
+                            paddingTop={5}
+                        >
+                            <Heading color="white">Hasil Pencarian</Heading>
 
-                    </Flex>
-                    <Flex 
-                        position="relative"
-                        top="27%"
-                        right="0.15%" 
-                        direction="column" 
-                        align="center"
-                        flexWrap={'wrap'} 
-                        gap= {{base: '2', md: '5'}}
-                    >
-                    {searchData?.mata_pelajaran.map((item) => (
-                    <SearchCard key={item.id_matpel} id_matpel={item.id_matpel} nama_matpel={item.nama_matpel} kelas={item.kelas} />
-                    ))}
-                    </Flex>
-                    
-                </VStack>
-                
-
+                        </Flex>
+                        <Flex 
+                            position="relative"
+                            top="27%"
+                            right="0.15%" 
+                            direction="column" 
+                            align="center"
+                            flexWrap={'wrap'} 
+                            gap= {{base: '2', md: '5'}}
+                        >
+                        {searchData?.mata_pelajaran.map((item) => (
+                        <SearchCard key={item.id_matpel} id_matpel={item.id_matpel} nama_matpel={item.nama_matpel} kelas={item.kelas} />
+                        ))}
+                        </Flex>
+                        
+                    </VStack>
+                }
             </Box>
             <Footer/>
         </>
