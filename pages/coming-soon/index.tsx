@@ -1,36 +1,12 @@
 import React from 'react'
-import { Box, Center, Heading, Image } from '@chakra-ui/react'
+import { Box, Button, Center, Heading, Image, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import NextLink from 'next/link'
 
 export default function ComingSoon() {
-    // Create a ref to store the text element
-    const textRef = useRef<HTMLDivElement>(null);
-
-    // Use state to store the current mouse position
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-    // Update the mouse position when the mouse moves
-    useEffect(() => {
-        function handleMouseMove(event: MouseEvent) {
-        setMousePos({ x: event.clientX, y: event.clientY });
-        }
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
-
-    // Use the ref and the mouse position to update the text element's position
-    useEffect(() => {
-        if (textRef.current) {
-        const sensitivity = 0.1; // adjust this value to control the sensitivity
-        const textEl = textRef.current;
-        textEl.style.transform = `translate(${(mousePos.x - 750) * sensitivity}px, ${(mousePos.y - 100) * sensitivity}px)`;
-        }
-    }, [mousePos]);
+    const router = useRouter()
     
     return (
         <>
@@ -49,18 +25,23 @@ export default function ComingSoon() {
 
                 overflow='hidden'
             >
-                <Heading 
-                    color='white' 
-                    size={{base: 'xl', md: '2xl', lg: '4xl'}} 
-                    textShadow='0 0 20px #200655'
-                    
-                    position='absolute' 
-                    zIndex='10'
+                <Center position='absolute' zIndex='99'>
+                    <VStack gap={{base: 2, lg: 5}}>
+                        <Heading 
+                            color='white' 
+                            size={{base: '2xl', lg: '4xl'}} 
+                            textShadow='0 0 20px #200655'
+                        >
+                            COMING SOON!
+                        </Heading>
 
-                    ref={textRef}
-                >
-                    COMING SOON!
-                </Heading>
+                        <NextLink href={'/'} passHref>
+                            <Button bg='#FEE56C' color="#500D7D" rounded={20} fontSize={{base: 'sm', lg: 'xl'}}>
+                                Kembali ke Halaman Utama
+                            </Button>
+                        </NextLink>
+                    </VStack>
+                </Center>
 
                 <Image
                     height={{base: '50vh', md: '65vh', xl: '80vh'}}

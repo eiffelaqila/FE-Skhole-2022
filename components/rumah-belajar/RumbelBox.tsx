@@ -23,7 +23,7 @@ import AddMatpelModal from './matpel/AddMatpelModal';
 
 function RumbelBox() {
     const [loading, setLoading] = useState(true);
-    const [kelas, setKelas] = useState('7');
+    const [kelas, setKelas] = useState('Kelas 7');
     const [matpel, setMatpel] =  useState<IMataPelajaran[] | null>(null);
     
     const { isOpen: isOpenAddMatpelModal, onOpen: onOpenAddMatpelModal, onClose: onCloseAddMatpelModal } = useDisclosure()
@@ -67,27 +67,27 @@ function RumbelBox() {
     const classSelectionItems = [
         {
             text: 'Kelas 7',
-            value: '7'
+            value: 'Kelas 7'
         },
         {
             text: 'Kelas 8',
-            value: '8'
+            value: 'Kelas 8'
         },
         {
             text: 'Kelas 9',
-            value: '9'
+            value: 'Kelas 9'
         },
         {
             text: 'Kelas 10',
-            value: '10'
+            value: 'Kelas 10'
         },
         {
             text: 'Kelas 11',
-            value: '11'
+            value: 'Kelas 11'
         },
         {
             text: 'Kelas 12',
-            value: '12'
+            value: 'Kelas 12'
         }, {
             text: 'Cicaheum - Eksploratif',
             value: 'Cicaheum - Eksploratif'

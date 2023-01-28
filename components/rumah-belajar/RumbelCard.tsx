@@ -47,7 +47,7 @@ function RumbelCard({
                             <Image src='static/images/Line.svg'/>
                         </Flex>
                         <Text textAlign={{base: 'center', md: 'left'}} fontSize={{base: '12px', md: '16px'}} color={'#500D7D'}>
-                           <b> {nama_matpel} </b> <br/> <span style={{color:"#000000"}}>Kelas {kelas}</span>
+                           <b> {nama_matpel} </b> <br/> <span style={{color:"#000000"}}>{kelas}</span>
                         </Text>
                     </Flex>
                 </Flex>

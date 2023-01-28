@@ -67,27 +67,31 @@ export default function RumbelHeaderLayout({
                         {subtitle}
                         </Text>
                     </VStack>
-                
-                    <HStack>
-                        <IconButton
-                            variant='solid'
-                            colorScheme={'teal'}
-                            borderRadius={'full'}
-                            size={'lg'}
-                            aria-label='Edit'
-                            icon={<EditIcon />}
-                            onClick={onOpenEditModal}
-                        />
-                        <IconButton
-                            variant='solid'
-                            colorScheme={'red'}
-                            borderRadius={'full'}
-                            size={'lg'}
-                            aria-label='Delete'
-                            icon={<DeleteIcon />}
-                            onClick={onOpenDeleteModal}
-                        />
-                    </HStack>
+
+                    { userToken ?
+                        <HStack>
+                            <IconButton
+                                variant='solid'
+                                colorScheme={'teal'}
+                                borderRadius={'full'}
+                                size={'lg'}
+                                aria-label='Edit'
+                                icon={<EditIcon />}
+                                onClick={onOpenEditModal}
+                            />
+                            <IconButton
+                                variant='solid'
+                                colorScheme={'red'}
+                                borderRadius={'full'}
+                                size={'lg'}
+                                aria-label='Delete'
+                                icon={<DeleteIcon />}
+                                onClick={onOpenDeleteModal}
+                            />
+                        </HStack>
+                    :
+                        <></>
+                    }
                 </Flex>
             </Center>
 

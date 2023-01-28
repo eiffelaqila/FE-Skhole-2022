@@ -1,20 +1,12 @@
 import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Footer from '../../layout/Footer'
-import { SearchIcon } from '@chakra-ui/icons';
 import {
     Box,
-    Container,
     Center,
     Heading,
     Image,
-    Stack,
-    Text,
     Flex,
-    Input,
-    InputRightAddon,
-    IconButton,
-    InputGroup,
     VStack,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -23,6 +15,7 @@ import ISearchData from '../../models/ISearchData';
 import { postAPI } from '../../lib/api';
 import SearchCard from '../../components/SearchCard'
 import axios from 'axios';
+import SearchBar from '../../components/SearchBar';
 
 export default function Search() {
     const router = useRouter();
@@ -73,63 +66,27 @@ export default function Search() {
             <Head>
                 <title>Search - Skhole 2022</title>
             </Head>
-            <Box
-                position='relative' 
-                overflow='hidden'
+            <Center
                 h = '40vh'
                 css={`
                     background: url(static/images/noise.png), #471CA8;
                     background-repeat: repeat
                 `}
-                >
-                    
-                   <VStack>
-                    <Flex 
-                        position="absolute"
-                        top="20%"
-                        right="50%px" 
-                        direction="column" 
-                        align="center"
-                    >
-                        <Heading color="white">
-                            Teruslah menjadi orang yang <span style={{color:"#FEE56C"}} color="#FEE56C">mencari ilmu</span> 
-                        </Heading>
-                        <Heading color="white"> 
-                            kapanpun dan di manapun.
-                        </Heading>
-                        
-                    </Flex>
-                    <Container 
-                        position="absolute"
-                        top="60%"
-                        right="50%px" 
-                        bg="white" 
-                        p="0"
-                        borderRadius="xl"
-                        >
-                        <Stack direction="row" gap="2">
-                            <InputGroup>
-                                <Input
-                                    value={search}
-                                    onChange={e => setSearch(e.target.value)}
-                                    placeholder="Mau belajar apa hari ini?"
-                                    borderRadius="xl"
-                                />
-                                <InputRightAddon>
-                                    <IconButton aria-label="Search" icon={<SearchIcon />} onClick={handleSearch}/>
-                                </InputRightAddon>
-                            </InputGroup>
-                        </Stack>
-                    </Container>
+            > 
+                <VStack gap={'10'}>
+                    <Heading fontSize={{base: '24px', sm:'28px', md: '36px'}} color="white" textAlign="center" px={'5'}>
+                        Teruslah menjadi orang yang <span style={{color:"#FEE56C"}} color="#FEE56C">mencari ilmu</span> kapanpun dan di manapun.
+                    </Heading>
+                    <SearchBar />
                 </VStack>
-            </Box>
+            </Center>
             <Box
-            position='relative' 
-            minH = '60vh'
-            css={`
-                    background: url(static/images/noise.png), #500D7D;
-                    background-repeat: repeat;
-                `}
+                minH = '60vh'
+                css={`
+                        background: url(static/images/noise.png), #500D7D;
+                        background-repeat: repeat;
+                    `}
+                py={10}
             >
                 {loading ? 
                     <Center h="20vh">
@@ -138,29 +95,43 @@ export default function Search() {
                 :
                     <VStack>
                         <Flex 
-                            position="relative"
-                            top="20%"
-                            right="11%" 
                             direction="column" 
-                            align="center"
-                            paddingTop={5}
+                            pb={5}
                         >
                             <Heading color="white">Hasil Pencarian</Heading>
+                        </Flex>
 
-                        </Flex>
-                        <Flex 
-                            position="relative"
-                            top="27%"
-                            right="0.15%" 
-                            direction="column" 
-                            align="center"
-                            flexWrap={'wrap'} 
-                            gap= {{base: '2', md: '5'}}
-                        >
-                        {searchData?.mata_pelajaran.map((item) => (
-                        <SearchCard key={item.id_matpel} id_matpel={item.id_matpel} nama_matpel={item.nama_matpel} kelas={item.kelas} />
-                        ))}
-                        </Flex>
+                        { searchData?.mata_pelajaran.length !== 0 ? 
+                            <Flex 
+                                direction="column" 
+                                align="center"
+                                gap= {{base: '2', md: '5'}}
+                            >
+                                <Heading fontSize={'xl'} color="#FEE56C">Mata Pelajaran</Heading>
+                                {searchData?.mata_pelajaran.map((item) => (
+                                    <SearchCard key={item.id_matpel} id_matpel={item.id_matpel} nama_matpel={item.nama_matpel} kelas={item.kelas} />
+                                ))}
+                            </Flex>
+
+                            :
+                            <></>
+                        }
+                        
+                        { searchData?.materi.length !== 0 ? 
+                            <Flex 
+                                direction="column" 
+                                align="center"
+                                gap= {{base: '2', md: '5'}}
+                            >
+                                <Heading fontSize={'xl'} color="#FEE56C">Materi</Heading>
+                                {searchData?.materi.map((item) => (
+                                    <SearchCard key={item.id_matpel} id_matpel={item.id_matpel} nama_matpel={item.nama_materi} kelas={(item.nama_matpel).concat(' - ', item.kelas)} />
+                                ))}
+                            </Flex>
+
+                            :
+                            <></>
+                        }
                         
                     </VStack>
                 }

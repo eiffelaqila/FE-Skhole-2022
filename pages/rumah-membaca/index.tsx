@@ -6,8 +6,8 @@ import RumbacaCard from '../../components/RumbacaCard'
 import Footer from '../../layout/Footer'
 
 export default function RumahMembaca() {
-    
-export default function RumahMembaca() {
+    return (
+        <>
             <Head>
                 <title>Rumah Membaca - Skhole 2022</title>
             </Head>
@@ -43,5 +43,6 @@ export default function RumahMembaca() {
             </Box>
             
             <Footer/>
-
+        </>
+    )
 }
