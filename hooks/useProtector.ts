@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import useAuth from './useAuth';
-import { useToast } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from "react";
+import useAuth from "./useAuth";
+import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 function useProtector() {
     const auth = useAuth();
@@ -10,8 +10,8 @@ function useProtector() {
     const [isAuthorized, setAuthorized] = useState(false);
 
     useEffect(() => {
-        statusCheck()
-    }, [])
+        statusCheck();
+    }, []);
 
     function statusCheck() {
         const result = auth.authCheck();
@@ -20,19 +20,19 @@ function useProtector() {
             setAuthorized(true);
             return;
         }
-        
+
         toast({
-            title: 'Sesi Habis',
-            description: 'Sesi anda habis, silahkan melakukan login kembali',
-            position: 'top',
-            status: 'info',
+            title: "Sesi Habis",
+            description: "Sesi anda habis, silahkan melakukan login kembali",
+            position: "top",
+            status: "info",
         });
 
-        router.push('/login')
-        return
+        router.push("/login");
+        return;
     }
 
-    return { isAuthorized }
+    return { isAuthorized };
 }
 
-export default useProtector
+export default useProtector;

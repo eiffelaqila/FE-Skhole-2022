@@ -66,7 +66,7 @@ function RumbelBox() {
 
         setLoading(true);
         updateData();
-    }, [kelas, authCheck, updateData]);
+    }, [kelas, updateData]);
 
     const classSelectionItems = [
         {

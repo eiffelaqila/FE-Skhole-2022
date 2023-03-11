@@ -1,14 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 export interface IResponse<T> {
     data: T;
     message: string;
 }
 
-export async function getAPI<T>(
-    path: string,
-    params?: any,
-) {
+export async function getAPI<T>(path: string, params?: any) {
     const parameter = params ?? undefined;
 
     const { data }: { data: IResponse<T> } = await axios.get(
@@ -16,7 +13,7 @@ export async function getAPI<T>(
         {
             params: parameter,
         }
-    )
+    );
 
     return data;
 }
@@ -24,26 +21,22 @@ export async function getAPI<T>(
 export async function getAPIAuth<T>(
     path: string,
     authorization: string,
-    params?: any,
+    params?: any
 ) {
     const parameter = params ?? undefined;
 
     const { data }: { data: IResponse<T> } = await axios.get(
         `${process.env.BACKEND_SERVER}${path}`,
         {
-            headers: { Authorization: `Bearer ${authorization}`},
+            headers: { Authorization: `Bearer ${authorization}` },
             params: parameter,
         }
-    )
-    
+    );
+
     return data;
 }
 
-export async function postAPI<T>(
-    path: string,
-    payload: any,
-    params?: any
-) {
+export async function postAPI<T>(path: string, payload: any, params?: any) {
     const parameter = params ?? undefined;
 
     const { data }: { data: IResponse<T> } = await axios.post(
@@ -52,7 +45,7 @@ export async function postAPI<T>(
         {
             params: parameter,
         }
-    )
+    );
 
     return data;
 }
@@ -61,7 +54,7 @@ export async function postAPIAuth<T>(
     path: string,
     payload: any,
     authorization: string,
-    params?: any,
+    params?: any
 ) {
     const parameter = params ?? undefined;
 
@@ -69,19 +62,15 @@ export async function postAPIAuth<T>(
         `${process.env.BACKEND_SERVER}${path}`,
         payload,
         {
-            headers: { Authorization: `Bearer ${authorization}`},
+            headers: { Authorization: `Bearer ${authorization}` },
             params: parameter,
         }
-    )
+    );
 
     return data;
 }
 
-export async function putAPI<T>(
-    path: string,
-    payload: any,
-    params?: any,
-) {
+export async function putAPI<T>(path: string, payload: any, params?: any) {
     const parameter = params ?? undefined;
 
     const { data }: { data: IResponse<T> } = await axios.put(
@@ -90,7 +79,7 @@ export async function putAPI<T>(
         {
             params: parameter,
         }
-    )
+    );
 
     return data;
 }
@@ -99,7 +88,7 @@ export async function putAPIAuth<T>(
     path: string,
     payload: any,
     authorization: string,
-    params?: any,
+    params?: any
 ) {
     const parameter = params ?? undefined;
 
@@ -107,18 +96,15 @@ export async function putAPIAuth<T>(
         `${process.env.BACKEND_SERVER}${path}`,
         payload,
         {
-            headers: { Authorization: `Bearer ${authorization}`},
+            headers: { Authorization: `Bearer ${authorization}` },
             params: parameter,
         }
-    )
-    
+    );
+
     return data;
 }
 
-export async function deleteAPI<T>(
-    path: string,
-    params?: any
-) {
+export async function deleteAPI<T>(path: string, params?: any) {
     const parameter = params ?? undefined;
 
     const { data }: { data: IResponse<T> } = await axios.delete(
@@ -126,7 +112,7 @@ export async function deleteAPI<T>(
         {
             params: parameter,
         }
-    )
+    );
 
     return data;
 }
@@ -134,17 +120,17 @@ export async function deleteAPI<T>(
 export async function deleteAPIAuth<T>(
     path: string,
     authorization: string,
-    params?: any,
+    params?: any
 ) {
     const parameter = params ?? undefined;
 
     const { data }: { data: IResponse<T> } = await axios.delete(
         `${process.env.BACKEND_SERVER}${path}`,
         {
-            headers: { Authorization: `Bearer ${authorization}`},
+            headers: { Authorization: `Bearer ${authorization}` },
             params: parameter,
         }
-    )
+    );
 
     return data;
 }

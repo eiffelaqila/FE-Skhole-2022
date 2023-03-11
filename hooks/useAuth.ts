@@ -1,7 +1,7 @@
-import ILogin from '../models/ILogin';
-import { getUserToken, setUserToken } from '../lib/login';
-import { postAPI } from '../lib/api';
-import ILoginData from '../models/ILoginData';
+import ILogin from "../models/ILogin";
+import { getUserToken, setUserToken } from "../lib/login";
+import { postAPI } from "../lib/api";
+import ILoginData from "../models/ILoginData";
 
 function useAuth() {
     function authCheck() {
@@ -9,7 +9,7 @@ function useAuth() {
             if (typeof window === "undefined") {
                 return undefined;
             }
-            
+
             const userToken = getUserToken();
 
             if (!userToken) {
@@ -26,7 +26,7 @@ function useAuth() {
         const userToken = authCheck();
 
         if (userToken) {
-            return userToken.user.username
+            return userToken.user.username;
         }
 
         return undefined;
@@ -34,20 +34,17 @@ function useAuth() {
 
     async function login(loginObj: ILogin) {
         if (getUserToken() !== null) {
-            localStorage?.removeItem('userToken');
+            localStorage?.removeItem("userToken");
         }
-    
-        try {        
-            const { data } = await postAPI<ILoginData>(
-                `/auth/login`,
-                {
-                    username: loginObj.username,
-                    password: loginObj.password
-                },
-            )
-            
+
+        try {
+            const { data } = await postAPI<ILoginData>(`/auth/login`, {
+                username: loginObj.username,
+                password: loginObj.password,
+            });
+
             setUserToken(data);
-            
+
             return data;
         } catch (err) {
             throw err;
@@ -55,15 +52,15 @@ function useAuth() {
     }
 
     async function logout() {
-        localStorage?.removeItem('userToken');
+        localStorage?.removeItem("userToken");
     }
 
     return {
         login,
         logout,
         authCheck,
-        getUsername
-    }
+        getUsername,
+    };
 }
 
-export default useAuth
+export default useAuth;

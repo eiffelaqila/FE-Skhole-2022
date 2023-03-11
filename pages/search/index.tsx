@@ -18,12 +18,19 @@ export default function Search() {
     const [searchData, setSearchData] = useState<ISearchData | null>(null);
 
     const updateData = useCallback(async () => {
-        const { data } = await postAPI<ISearchData>(`/rumahbelajar/search`, {
-            query: router.query["query"],
-        });
+        try {
+            const { data } = await postAPI<ISearchData>(
+                `/rumahbelajar/search`,
+                {
+                    query: router.query["query"],
+                }
+            );
 
-        setLoading(false);
-        setSearchData(data);
+            setLoading(false);
+            setSearchData(data);
+        } catch (err: any) {
+            console.log(err);
+        }
     }, [router.query]);
 
     const handleSearch = () => {

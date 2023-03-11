@@ -35,21 +35,29 @@ export default function RumahBelajar() {
     const { authCheck } = useAuth();
 
     const updateMatpel = async (id: string) => {
-        const { data } = await getAPI<IMataPelajaran>(
-            `/rumahbelajar/matapelajaran/${id}`
-        );
+        try {
+            const { data } = await getAPI<IMataPelajaran>(
+                `/rumahbelajar/matapelajaran/${id}`
+            );
 
-        setMatpel(data);
-        setLoadingMatpel(false);
+            setMatpel(data);
+            setLoadingMatpel(false);
+        } catch (err: any) {
+            console.log(err);
+        }
     };
 
     const updateMateri = async (id: string) => {
-        const { data } = await getAPI<IMateri[]>(
-            `/rumahbelajar/materi-matapelajaran/${id}`
-        );
+        try {
+            const { data } = await getAPI<IMateri[]>(
+                `/rumahbelajar/materi-matapelajaran/${id}`
+            );
 
-        setMateri(data);
-        setLoadingMateri(false);
+            setMateri(data);
+            setLoadingMateri(false);
+        } catch (err: any) {
+            console.log(err);
+        }
     };
 
     useEffect(() => {
@@ -76,7 +84,7 @@ export default function RumahBelajar() {
             }
             console.log("INI");
         }
-    }, [router, authCheck]);
+    }, [router]);
 
     if (loadingMatpel) {
         return (
