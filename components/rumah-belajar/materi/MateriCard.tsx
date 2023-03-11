@@ -96,17 +96,17 @@ function MateriCard({
                         gap={{base: '2', md: '5'}}
                         pt={5}
                     >
-                        <Link href="https://www.google.com">
+                        <Link href={url_rangkuman ?? ''}>
                             <Button size={'sm'} borderRadius={'full'} leftIcon={<DownloadIcon />} color={'white'} bg={'#8187F7'} variant='solid' px={15} py={5}>
                                 Rangkuman
                             </Button>
                         </Link>
-                        <Link href="https://www.github.com">
+                        <Link href={url_ujian ?? ''}>
                             <Button size={'sm'} borderRadius={'full'} leftIcon={<ExternalLinkIcon />} color={'white'} bg={'#FF930A'} variant='solid' px={15} py={5}>
                                 Latihan Soal
                             </Button>
                         </Link>
-                        <Link href="https://www.youtube.com">
+                        <Link href={url_solusi ?? ''}>
                             <Button size={'sm'} borderRadius={'full'} leftIcon={<DownloadIcon />} color={'white'} bg={'#FF930A'} variant='solid' px={15} py={5}>
                                 Solusi
                             </Button>

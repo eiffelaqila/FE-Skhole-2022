@@ -13,118 +13,202 @@ import {
     Tfoot,
     Tr,
     Th,
-    Td
-} from '@chakra-ui/react'
-import { useEffect, useState } from 'react';
-import { getAPI } from '../lib/api'
-import RumbelCard from '../components/RumbelCard'
-import IMataPelajaran from '../models/IMataPelajaran';
-import IJudul from '../models/IJudul';
-import RumbacaCard from './RumbacaCard';
+    Td,
+} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { getAPI } from "../lib/api";
+import IMataPelajaran from "../models/IMataPelajaran";
+import IArtikel from "../models/IArtikel";
+import RumbacaCard from "./RumbacaCard";
 
 function RumbacaBox() {
-    const [judul, setJudul] =  useState<IJudul[] | null>(null);
-
-    useEffect(() => {
-        setJudul(dummyData)
-    },[])
+    const [artikel, setArtikel] = useState<IArtikel[] | null>(null);
 
     const dummyData = [
-        {idJudul : '1',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillah',
-        time : '1'
+        {
+            id_artikel: "1",
+            judul: "bismillah",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '2',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillah2',
-        time : '10'
+        {
+            id_artikel: "2",
+            judul: "bismillah2",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '3',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillah3',
-        time : '100'
+        {
+            id_artikel: "3",
+            judul: "bismillah3",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '4',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillah4',
-        time : '50'
+        {
+            id_artikel: "4",
+            judul: "bismillah4",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '5',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillah8',
-        time : '5'
+        {
+            id_artikel: "5",
+            judul: "bismillah8",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '6',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillah5',
-        time : '3'
+        {
+            id_artikel: "6",
+            judul: "bismillah5",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '7',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillah9',
-        time : '9'
+        {
+            id_artikel: "7",
+            judul: "bismillah9",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '8',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillahhh',
-        time : '7'
+        {
+            id_artikel: "8",
+            judul: "bismillahhh",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '9',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillahaaa',
-        time : '0.5'
+        {
+            id_artikel: "9",
+            judul: "bismillahaaa",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
-        {idJudul : '10',
-        gambarSrc : 'https://picsum.photos/200',
-        namaJudul : 'bismillahii',
-        time : '1'
+        {
+            id_artikel: "10",
+            judul: "bismillahii",
+            url: "...",
+            kategori: "...",
+            author: "...",
+            img_src: "https://picsum.photos/200",
         },
+    ];
 
-    ]
+    useEffect(() => {
+        setArtikel(dummyData);
+    }, []);
 
     return (
         <>
-            <Flex flexDirection={{ base: 'column', md: 'row' }} justifyContent={{base: 'flex-start', md: 'space-between'}} padding="50px 35px 0px 0px">
-                <Heading color="white" paddingLeft={{base:"60px" , md:"80px" }} fontSize={54}>
+            <Flex
+                flexDirection={{ base: "column", md: "row" }}
+                justifyContent={{ base: "flex-start", md: "space-between" }}
+                padding="50px 35px 0px 0px"
+            >
+                <Heading
+                    color="white"
+                    paddingLeft={{ base: "60px", md: "80px" }}
+                    fontSize={54}
+                >
                     Rumah Membaca
                 </Heading>
             </Flex>
-            <Box padding={{base: '10', md: '20'}} minHeight='600px'>
-                <Flex flexWrap={'wrap'} gap= {{base: '5', md: '10'}} justifyContent={'center'} flexDirection={{base:'row'}}>                    
-                    <Flex 
-                        flexDirection='column' 
-                        paddingLeft="10px"
-                        gap={8}
-                    >
-                        {judul.map((item: { idJudul: string; gambarSrc: string; namaJudul:string;time:string;}) => (
-                            <RumbacaCard id_judul={item.idJudul} gambar_src={item.gambarSrc} nama_judul={item.namaJudul} time={item.time}/>
-                        ))}
+            <Box padding={{ base: "10", md: "20" }} minHeight="600px">
+                <Flex
+                    flexWrap={"wrap"}
+                    gap={{ base: "5", md: "10" }}
+                    justifyContent={"center"}
+                    flexDirection={{ base: "row" }}
+                >
+                    <Flex flexDirection="column" paddingLeft="10px" gap={8}>
+                        {artikel?.map(
+                            (item: {
+                                id_artikel: string;
+                                judul: string;
+                                url: string;
+                                kategori: string;
+                                author: string;
+                                img_src: string;
+                            }) => (
+                                <RumbacaCard
+                                    key={item.id_artikel}
+                                    id_judul={item.id_artikel}
+                                    gambar_src={item.img_src}
+                                    nama_judul={item.judul}
+                                />
+                            )
+                        )}
                     </Flex>
-                    <Spacer/>                 
-                    <Flex 
-                        flexDirection='column'
-                        paddingRight={10} 
-                        gap={2}
-                    >
+                    <Spacer />
+                    <Flex flexDirection="column" paddingRight={10} gap={2}>
                         <Table>
                             <Thead>
-                                <Tr color='#FEE56C' fontWeight='bold' fontFamily='livvic' fontSize={28}>Kategori Bacaan</Tr>
+                                <Tr
+                                    color="#FEE56C"
+                                    fontWeight="bold"
+                                    fontFamily="livvic"
+                                    fontSize={28}
+                                >
+                                    Kategori Bacaan
+                                </Tr>
                             </Thead>
-    
+
                             <Tbody>
-                                <Tr color={'white'} textAlign = {'right'} fontSize={18}>Hidangan</Tr>
-                                <Tr color={'white'} textAlign = {'right'} fontSize={18}>Keuangan</Tr>
-                                <Tr color={'white'} textAlign = {'right'} fontSize={18}>Olahraga</Tr>
-                                <Tr color={'white'} textAlign = {'right'} fontSize={18}>Otomotif</Tr>
-                                <Tr color={'white'} textAlign = {'right'} fontSize={18}>Teknologi</Tr>
+                                <Tr
+                                    color={"white"}
+                                    textAlign={"right"}
+                                    fontSize={18}
+                                >
+                                    Hidangan
+                                </Tr>
+                                <Tr
+                                    color={"white"}
+                                    textAlign={"right"}
+                                    fontSize={18}
+                                >
+                                    Keuangan
+                                </Tr>
+                                <Tr
+                                    color={"white"}
+                                    textAlign={"right"}
+                                    fontSize={18}
+                                >
+                                    Olahraga
+                                </Tr>
+                                <Tr
+                                    color={"white"}
+                                    textAlign={"right"}
+                                    fontSize={18}
+                                >
+                                    Otomotif
+                                </Tr>
+                                <Tr
+                                    color={"white"}
+                                    textAlign={"right"}
+                                    fontSize={18}
+                                >
+                                    Teknologi
+                                </Tr>
                             </Tbody>
                         </Table>
                     </Flex>
                 </Flex>
             </Box>
         </>
-    )
+    );
 }
 
-export default RumbacaBox
+export default RumbacaBox;

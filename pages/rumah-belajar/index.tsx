@@ -19,7 +19,7 @@ export default function RumahBelajar() {
                 bgColor="#373360" 
                 transform="auto"
                 css={`
-                    background: url(/static/images/noise.png), #200655;
+                    background: #200655;
                     background-repeat: repeat;
                 `}
             >]
